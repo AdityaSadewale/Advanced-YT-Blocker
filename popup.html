@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+/* === BODY BASE === */
+body {
+  font-family: "JetBrains Mono", monospace;
+  padding: 14px;
+  width: 180px;
+  background: linear-gradient(120deg, #0b0e13, #0f1420);
+  color: #e6f1ff;
+  overflow: hidden;
+}
+
+/* === BUTTON BASE === */
+button {
+  width: 100%;
+  padding: 13px;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  border-radius: 10px;
+  border: 1px solid #1f2937;
+  background: #0f1420;
+  color: #e6f1ff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background 0.3s ease,
+    border 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+/* === ACCENT LINE === */
+button::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  bottom: 6px;
+  width: 76%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #5eead4, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* === ON STATE === */
+button.on {
+  background: #0b1220;
+  border-color: #5eead4;
+  animation: breathe 3.5s ease-in-out infinite;
+}
+
+button.on::before {
+  opacity: 1;
+  animation: accentFlow 4s linear infinite;
+}
+
+/* === OFF STATE === */
+button.off {
+  opacity: 0.65;
+}
+
+/* === PRESS FEEL === */
+button:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* === BREATHE ANIMATION === */
+@keyframes breathe {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(94,234,212,0.2), 0 8px 20px rgba(94,234,212,0.1);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(94,234,212,0.35), 0 14px 35px rgba(94,234,212,0.2);
+  }
+}
+
+/* === ACCENT LINE FLOW === */
+@keyframes accentFlow {
+  0% { transform: translateX(-100%); opacity: 0.4; }
+  50% { transform: translateX(0%); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0.4; }
+}
+
+/* === CLICK PULSE === */
+.pulse {
+  animation: softPing 0.4s ease;
+}
+
+@keyframes softPing {
+  0% { box-shadow: 0 0 0 rgba(94,234,212,0); }
+  50% { box-shadow: 0 0 20px rgba(94,234,212,0.6), 0 0 50px rgba(94,234,212,0.3); }
+  100% { box-shadow: 0 0 0 rgba(94,234,212,0); }
+}
+
+/* === BACKGROUND VIBES === */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(94,234,212,0.06), transparent 70%);
+  animation: bgFlow 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes bgFlow {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+</style>
+
+</head>
+<body>
+  <button id="toggle">Loading...</button>
+  <script src="popup.js"></script>
+</body>
+</html>
